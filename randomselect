@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<title>
+    random name selector
+</title>
+
+<head>
+    <style>
+        body {
+            background-color: #f1f1f1;
+
+        }
+
+        .main {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: xx-large;
+            color: red;
+            border: solid 5px skyblue;
+            border-radius: 250px;
+            background-color: white;
+            text-align: center;
+
+        }
+
+        button {
+            font-size: xx-large;
+            padding: 5px;
+            color: white;
+            background-color: black;
+            text-align: center;
+            border: red solid 2px;
+            width: 3cm;
+            margin: 2px;
+        }
+
+        .mar {
+            background-color: #f1f1f1;
+            color: red;
+            font-size: xx-large;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 2cm;
+        }
+    </style>
+    <script>
+        function happen() {
+            function whoIsPaying(name, num, on) {
+                var name = [];
+                for (let index = 0; index < num; index++) {
+                    name[index] = prompt("enter name" + (index + 1));
+                }
+
+
+                var randomNum = Math.random();
+                randomNum = randomNum * name.length;
+
+                randomNum = Math.floor(randomNum);
+                return name[randomNum] + " is selected randomly for  " + on;
+            }
+            var on = prompt("what for should i select randomly ?");
+            var num = prompt("enter number of persons  in list  ");
+            let biller = whoIsPaying(name, num, on);
+            alert(biller);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="main">
+
+        <h1>random person selector for paying bill </h1>
+
+        <button onclick="happen();"> try it </button>
+    </div>
+    <marquee behavior="scroll" direction="" class="mar"> click on <button onclick="happen();">try it </button> for
+        finding random person !</marquee>
+    <div class="footer">
+        <h2>This page is set by <a href="https://anilreddy8739.github.io/myclassdetails/myweb.html">Anil reddy</a></h2>
+
+    </div>
+</body>
+
+</html>
