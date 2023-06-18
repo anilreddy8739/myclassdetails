@@ -91,22 +91,63 @@
 
 
         </div>
-        <form style="background-color:rgb(79, 128, 158);padding:2cm">
+        <form style="background-color:rgb(79, 128, 158);padding:2cm" autocomplete="off" method="post" name="submit-to-google-sheet">
 
             <h1 style="border-style: solid;">send me your details for any querys </h1>
             <LABel>MAIL ID:</LABel> <br>
-            <input type="text" size="30"><br><br>
+            <input type="email" size="30" placeholder="enter your mail id " name="email"><br><br>
             <label>name:</label> <br>
-            <input type="text" size="25"> <br> <br>
+            <input type="text" size="25" placeholder="enter your name " name="name"> <br> <br>
             <label for="input"> address : </label> <br>
 
-            <input type="text" size="40"><br><br>
+            <input type="text" size="40" placeholder="enter your address " name="address"><br><br>
             <label>phone number:</label> <br>
-            <input type="number" size="10">
+            <input type="number" size="10" placeholder="enter your mail" name="number">
             <br><br>
-            <a href="https://storage.googleapis.com/desktop-client-assets/images/success.png"><button>send these details
+            <a href="https://storage.googleapis.com/desktop-client-assets/images/success.png"><button type="submit">send these details
                 </button></a>
+            
         </form>
+         <span id="msg"></span>
 </body>
+    <script>
+
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+
+    function opentab(tabname) {
+        for (tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+
+
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add('active-tab');
+    }
+
+
+</script>
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwQvSklDc3HuwKxxqbOD6WiFrV4jGq4mPzxRN6_mFNn0Awxwd-SQ14f4QlRMUjgEl_ZPg/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'post', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = " you have sent me your details"
+                setTimeout(function () {
+                    msg.innerHTML = ""
+                },2000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+    })
+</script>
 
 </html>
